@@ -5,7 +5,7 @@ The method is refered to as 3DBC (3-dimensional bias-correction), as it keeps in
 
 It is basically a smart combination of quantile-mapping (or any usual bias-correction method) and Schaake Shuffle.
 
-**These scripts are for the application exercise** 
+**These scripts are for the application exercise.** 
 
 ## v2023: new version for the new 2023 report
 ## Contents
