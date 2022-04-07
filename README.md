@@ -11,7 +11,7 @@ It is basically a smart combination of quantile-mapping (or any usual bias-corre
 ## Contents
 
 #### Main folder
-Scripts for preparing yearly files and adjust NetCDF attributes (prepare_obs.sh, prepare_input.sh, prepare_output.sh, ncatted_*.sh)
+Scripts for preparing yearly files and adjust NetCDF attributes (prepare_obs.sh, prepare_input.sh, prepare_output.sh, ncatted_*.sh, splitDomain.R)
 
 ### GCM_RCM (e.g., MPI_CCLM)
 Example scripts to post-process one of the bias-corrected **Historical, RCP2.6, RCP4.5 and RCP8.5** RCM data sets from KSS/NVE used in Klima i Norge 2100.
