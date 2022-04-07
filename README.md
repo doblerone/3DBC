@@ -19,4 +19,4 @@ The scripts reorder the dates within a year following the reference dataset lag-
 (MET Norway specific file locations need to be changed)
 
 ### 3DBC output
-is available at http://thredds.met.no/thredds/catalog/metusers/andreasd/3DBC/ver2023/app/catalog.html
+is available at https://thredds.met.no/thredds/catalog/KSS/Klima_i_Norge_2100/bias_corrected/3DBC/application/catalog.html
