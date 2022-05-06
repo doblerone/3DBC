@@ -10,7 +10,7 @@ ncatted -O -a bc_method_id,global,o,c,"MET-3DBC" $file
 ncatted -O -a creator_name,global,o,c,"Andreas Dobler" $file
 ncatted -O -a creator_email,global,o,c,"andreas.dobler@met.no" $file
 ncatted -O -a institution,global,o,c,"The Norwegian Meteorological Institute (MET Norway)" $file
-ncatted -O -a date_created,global,o,c,"2022-01-24" $file
+ncatted -O -a date_created,global,o,c,"2022-05-05" $file
 ncatted -O -h -a history,global,d,c,"" $file
 done
 
@@ -23,7 +23,7 @@ ncatted -O -a bc_method_id,global,o,c,"MET-3DBC" $file
 ncatted -O -a creator_name,global,o,c,"Andreas Dobler" $file
 ncatted -O -a creator_email,global,o,c,"andreas.dobler@met.no" $file
 ncatted -O -a institution,global,o,c,"The Norwegian Meteorological Institute (MET Norway)" $file
-ncatted -O -a date_created,global,o,c,"2022-01-24" $file
+ncatted -O -a date_created,global,o,c,"2022-05-05" $file
 ncatted -O -h -a history,global,d,c,"" $file
 done
 
@@ -36,7 +36,7 @@ ncatted -O -a bc_method_id,global,o,c,"MET-3DBC" $file
 ncatted -O -a creator_name,global,o,c,"Andreas Dobler" $file
 ncatted -O -a creator_email,global,o,c,"andreas.dobler@met.no" $file
 ncatted -O -a institution,global,o,c,"The Norwegian Meteorological Institute (MET Norway)" $file
-ncatted -O -a date_created,global,o,c,"2022-01-24" $file
+ncatted -O -a date_created,global,o,c,"2022-05-05" $file
 ncatted -O -h -a history,global,d,c,"" $file
 done
 
@@ -49,7 +49,7 @@ ncatted -O -a bc_method_id,global,o,c,"MET-3DBC" $file
 ncatted -O -a creator_name,global,o,c,"Andreas Dobler" $file
 ncatted -O -a creator_email,global,o,c,"andreas.dobler@met.no" $file
 ncatted -O -a institution,global,o,c,"The Norwegian Meteorological Institute (MET Norway)" $file
-ncatted -O -a date_created,global,o,c,"2022-01-24" $file
+ncatted -O -a date_created,global,o,c,"2022-05-05" $file
 ncatted -O -h -a history,global,d,c,"" $file
 done
 
