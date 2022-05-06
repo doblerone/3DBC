@@ -1,4 +1,4 @@
-# Split the domain into N parts with about the same number of non-NA grid points (to save memory in furhter calculations)
+# Split the domain into N parts with about the same number of non-NA grid points (to save memory in further calculations)
 # eqm data: 1195x1550=1'852'250 gps with 354'448 non-NA (ca. 19%)
 library(ncdf4)
 
