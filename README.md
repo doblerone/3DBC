@@ -18,5 +18,3 @@ Example scripts to post-process one of the bias-corrected **Historical, RCP2.6, 
 The scripts reorder the dates within a year following the reference dataset lag-1 autocorrelation (seperately for all variables).
 (MET Norway specific file locations need to be changed)
 
-### PRELIMINARY !!!! 3DBC output
-is available at https://thredds.met.no/thredds/catalog/KSS/Klima_i_Norge_2100/bias_corrected/3DBC/application/catalog.html
