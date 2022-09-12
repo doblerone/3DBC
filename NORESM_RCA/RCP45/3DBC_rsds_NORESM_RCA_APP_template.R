@@ -13,11 +13,12 @@ library(ncdf4)
 print(paste("Processing year",YEAR))
 RefYear <- YEAR
 
-if (YEAR > 2020 & YEAR < 2071)
+if (YEAR > 2020 & YEAR < 2041)
   RefYear <- YEAR - 48
+if (YEAR >= 2041 & YEAR < 2071)
+  RefYear <- YEAR - 52
 if (YEAR >= 2071)
   RefYear <- YEAR - 80
-
 print(paste("Using annual cycle from",RefYear))
 
 # Split the domain into parts with about the same number of non-NA grid points (to save memory)
