@@ -13,9 +13,9 @@ library(ncdf4)
 print(paste("Processing year",YEAR))
 RefYear <- YEAR
 
-if (YEAR > 2020 & YEAR < 2040)
-  RefYear <- YEAR - 20
-if (YEAR >= 2040)
+if (YEAR > 2020 & YEAR < 2071)
+  RefYear <- YEAR - 50
+if (YEAR >= 2071)
   RefYear <- YEAR - 80
 
 print(paste("Using annual cycle from",RefYear))
