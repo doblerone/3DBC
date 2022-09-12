@@ -15,7 +15,7 @@ for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
  do mkdir -p ${BASEDIR}/${var}/CurC/app
  cd ${BASEDIR}/${var}/CurC/app
  for model in noresm-r1i1p1-rca #cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
-  do rsync -avu /lustre/storeC-ext/users/kin2100/NVE/EQM/${model}/${var}/hist/* .
+  do rsync -avu ${BASEDIR}/${var}/Cur/*${model}*nc4 . #/lustre/storeC-ext/users/kin2100/NVE/EQM/${model}/${var}/hist/* .
  done
  #Rename files
  #rename s/_eqm/_3dbc-eqm/ *nc4 #ubuntu & CentOS
@@ -29,7 +29,7 @@ for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
  do mkdir -p ${BASEDIR}/${var}/FutC
  cd ${BASEDIR}/${var}/FutC
  for model in noresm-r1i1p1-rca #cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
-  do rsync -avu /lustre/storeC-ext/users/kin2100/NVE/EQM/${model}/${var}/rcp??/* .
+  do rsync -avu ${BASEDIR}/${var}/Fut/*${model}*nc4 .  #/lustre/storeC-ext/users/kin2100/NVE/EQM/${model}/${var}/rcp??/* .
  done
  #Rename files
  # rename s/_eqm/_3dbc-eqm/ *nc4 #ubuntu & CentOS
