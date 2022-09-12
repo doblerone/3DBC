@@ -14,7 +14,7 @@ print(paste("Processing year",YEAR))
 RefYear <- YEAR
 
 if (YEAR > 2020 & YEAR < 2071)
-  RefYear <- YEAR - 50
+  RefYear <- YEAR - 48
 if (YEAR >= 2071)
   RefYear <- YEAR - 80
 
