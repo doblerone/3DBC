@@ -32,8 +32,8 @@ for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
   do rsync -avu /lustre/storeC-ext/users/kin2100/NVE/EQM/${model}/${var}/rcp??/* . #${BASEDIR}/${var}/Fut/*${model}*nc4 . 
  done
  #Rename files
- rename s/_eqm/_3dbc-eqm/ *nc4 #ubuntu & CentOS
- # rename _eqm _3dbc-eqm *nc4 #RedHat
+ rename s/_eqm/_3dbc-eqm/ *nc4 #ubuntu
+ # rename _eqm _3dbc-eqm *nc4 #RedHat & CentOS
 done
 
 cd ${BASEDIR}
