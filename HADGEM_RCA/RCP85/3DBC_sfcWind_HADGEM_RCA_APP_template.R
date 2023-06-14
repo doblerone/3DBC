@@ -42,7 +42,7 @@ for (p in 1:length(idy))
   nc_close(nc)
 
     refsimfile <- paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/sfcWind/Cur/hadgem-r1i1p1-rca_hist_eqm-klinogrid1612_rawbc_norway_1km_sfcWind_daily_",RefYear,".nc4",sep="")
-  if (RefYear > 2014)
+  if (RefYear > 2020)
     refsimfile <- paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/sfcWind/Fut/hadgem-r1i1p1-rca_rcp85_eqm-klinogrid1612_rawbc_norway_1km_sfcWind_daily_",RefYear,".nc4",sep="")
   
   nc <- nc_open(refsimfile)

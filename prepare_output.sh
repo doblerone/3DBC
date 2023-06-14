@@ -14,7 +14,7 @@ cd ${BASEDIR}
 for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
  do mkdir -p ${BASEDIR}/${var}/CurC/app
  cd ${BASEDIR}/${var}/CurC/app
- for model in ecearth-r12i1p1-rca #hadgem-r1i1p1-remo hadgem-r1i1p1-rca noresm-r1i1p1-rca cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
+ for model in hadgem-r1i1p1-rca #ecearth-r12i1p1-rca hadgem-r1i1p1-remo noresm-r1i1p1-rca cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
   do rsync -avu /lustre/storeC-ext/users/kin2100/NVE/EQM/${model}/${var}/hist/* . #${BASEDIR}/${var}/Cur/*${model}*nc4 .
  done
  #Rename files
@@ -28,7 +28,7 @@ done
 for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
  do mkdir -p ${BASEDIR}/${var}/FutC
  cd ${BASEDIR}/${var}/FutC
- for model in ecearth-r12i1p1-rca #hadgem-r1i1p1-remo hadgem-r1i1p1-rca noresm-r1i1p1-rca cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
+ for model in hadgem-r1i1p1-rca #ecearth-r12i1p1-rca hadgem-r1i1p1-remo noresm-r1i1p1-rca cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
   do rsync -avu /lustre/storeC-ext/users/kin2100/NVE/EQM/${model}/${var}/rcp??/* . #${BASEDIR}/${var}/Fut/*${model}*nc4 . 
  done
  #Rename files

@@ -40,7 +40,7 @@ for (p in 1:length(idy))
   nc_close(nc)
 
   refsimfile <- paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/tasmax/Cur/mpi-r1i1p1-cclm_hist_eqm-sn2018v2005_rawbc_norway_1km_tasmax_daily_",RefYear,".nc4",sep="")
-  if (RefYear > 2014)
+  if (RefYear > 2020)
     refsimfile <- paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/tasmax/Fut/mpi-r1i1p1-cclm_rcp85_eqm-sn2018v2005_rawbc_norway_1km_tasmax_daily_",RefYear,".nc4",sep="")
   
   nc <- nc_open(refsimfile)
