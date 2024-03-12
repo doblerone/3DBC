@@ -39,9 +39,9 @@ for (p in 1:length(idy))
   ObsA <- ncvar_get(nc,"ps",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
-  refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Cur/noresm-r1i1p1f1-hclim_hist_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",RefYear,".nc4",sep="")
+  refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Cur/ecearthveg-r1i1p1f1-hclim_hist_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",RefYear,".nc4",sep="")
   if (RefYear > 2020)
-    refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Fut/noresm-r1i1p1f1-hclim_ssp370_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",RefYear,".nc4",sep="")
+    refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Fut/ecearthveg-r1i1p1f1-hclim_ssp370_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",RefYear,".nc4",sep="")
   
   nc <- nc_open(refsimfile)
   CurA <- ncvar_get(nc,"ps",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
@@ -51,7 +51,7 @@ for (p in 1:length(idy))
   ValMask <- which(!is.na(CurA[,,1]) ,arr.ind=T)
   NofPoints <- dim(ValMask)[1]
   
-  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Fut/noresm-r1i1p1f1-hclim_ssp370_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4",sep=""))
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Fut/ecearthveg-r1i1p1f1-hclim_ssp370_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4",sep=""))
   FutA <- ncvar_get(nc,"ps",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
@@ -121,7 +121,7 @@ for (p in 1:length(idy))
   #That's all :-)
   
   #Write to NetCDF
-  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/FutC/noresm-r1i1p1f1-hclim_ssp370_3dbc-eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4",sep=""),write=TRUE)
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/FutC/ecearthveg-r1i1p1f1-hclim_ssp370_3dbc-eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4",sep=""),write=TRUE)
   ncvar_put(nc,"ps",FutCA,start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
@@ -138,7 +138,7 @@ gc()                            #free up memrory and report the memory usage.
 
 print("==========================================")
 print("Recompression")
-ifile <- paste0("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/FutC/noresm-r1i1p1f1-hclim_ssp370_3dbc-eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4")
+ifile <- paste0("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/FutC/ecearthveg-r1i1p1f1-hclim_ssp370_3dbc-eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4")
 ifile_tmp <- paste0(ifile,"_tmp")
 system(paste("mv",ifile,ifile_tmp))
 system(paste("nccopy -d 1 -s", ifile_tmp,ifile))

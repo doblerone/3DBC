@@ -35,24 +35,29 @@ for (p in 1:length(idy))
   print(paste("Started part",p,"on", date()))
   
   #read data
-  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Obs/HySN5_historical_ps_daily_",RefYear,".nc4",sep=""))
-  ObsA <- ncvar_get(nc,"ps",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tas/Obs/seNorge2018_",RefYear,".nc",sep=""))
+  ObsA <- ncvar_get(nc,"tn",start = c(1,idy[p],1), count=c(-1,szy[p],-1)) + 273.15 #convert to K
   nc_close(nc)
-  
-  refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Cur/noresm-r1i1p1f1-hclim_hist_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",RefYear,".nc4",sep="")
+
+  refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tasmin/Cur/ecearthveg-r1i1p1f1-hclim_hist_eqm-sn2018v2005_rawbc_norway_1km_tasmin_daily_",RefYear,".nc4",sep="")
   if (RefYear > 2020)
-    refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Fut/noresm-r1i1p1f1-hclim_ssp370_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",RefYear,".nc4",sep="")
+    refsimfile <- paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tasmin/Fut/ecearthveg-r1i1p1f1-hclim_ssp370_eqm-sn2018v2005_rawbc_norway_1km_tasmin_daily_",RefYear,".nc4",sep="")
   
   nc <- nc_open(refsimfile)
-  CurA <- ncvar_get(nc,"ps",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
+  CurA <- ncvar_get(nc,"tasmin",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
   #define mask with grid points with values
   ValMask <- which(!is.na(CurA[,,1]) ,arr.ind=T)
   NofPoints <- dim(ValMask)[1]
   
-  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/Fut/noresm-r1i1p1f1-hclim_ssp370_eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4",sep=""))
-  FutA <- ncvar_get(nc,"ps",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tasmin/Fut/ecearthveg-r1i1p1f1-hclim_ssp370_eqm-sn2018v2005_rawbc_norway_1km_tasmin_daily_",YEAR,".nc4",sep=""))
+  FutA <- ncvar_get(nc,"tasmin",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
+  nc_close(nc)
+  
+  # Mean temperature (as upper limit)
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tas/FutC/ecearthveg-r1i1p1f1-hclim_ssp370_3dbc-eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",YEAR,".nc4",sep=""))
+  FutA_tmeanC <- ncvar_get(nc,"tas",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
   #reading done
@@ -70,6 +75,7 @@ for (p in 1:length(idy))
     Obs <- ObsA[x,y,]
     Cur <- CurA[x,y,]
     Fut <- FutA[x,y,]
+    Fut_tn <- FutA_tmeanC[x,y,]
     
     #2100 non-leap year issue: remove last day from ref
     if(YEAR==2100)
@@ -115,14 +121,16 @@ for (p in 1:length(idy))
       GaussFC[,t] <- rN*GaussFC[,t-1] + sqrt(1-rN*rN) %*% t(GaussOR[t]) #from 2nd time step
     
     ##Rank and reorder values
+    ##Use mean temperature as upper limit (analog seNorge)
     RankFC <- nodp1 -  rank(GaussFC,ties.method = "first")
-    FutCA[x,y,] <- sort(Fut,decreasing = TRUE)[RankFC]
+    FutC_uc <- sort(Fut,decreasing = TRUE)[RankFC]
+    FutCA[x,y,] <- pmin(FutC_uc,Fut_tn)
   }
   #That's all :-)
   
   #Write to NetCDF
-  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/FutC/noresm-r1i1p1f1-hclim_ssp370_3dbc-eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4",sep=""),write=TRUE)
-  ncvar_put(nc,"ps",FutCA,start = c(1,idy[p],1), count=c(-1,szy[p],-1))
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tasmin/FutC/ecearthveg-r1i1p1f1-hclim_ssp370_3dbc-eqm-sn2018v2005_rawbc_norway_1km_tasmin_daily_",YEAR,".nc4",sep=""),write=TRUE)
+  ncvar_put(nc,"tasmin",FutCA,start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
   rm(Obs,CurA,FutA,FutCA,ValMask)
@@ -138,7 +146,7 @@ gc()                            #free up memrory and report the memory usage.
 
 print("==========================================")
 print("Recompression")
-ifile <- paste0("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/ps/FutC/noresm-r1i1p1f1-hclim_ssp370_3dbc-eqm-hysn2018v2005era5_rawbc_norway_1km_ps_daily_",YEAR,".nc4")
+ifile <- paste0("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tasmin/FutC/ecearthveg-r1i1p1f1-hclim_ssp370_3dbc-eqm-sn2018v2005_rawbc_norway_1km_tasmin_daily_",YEAR,".nc4")
 ifile_tmp <- paste0(ifile,"_tmp")
 system(paste("mv",ifile,ifile_tmp))
 system(paste("nccopy -d 1 -s", ifile_tmp,ifile))
