@@ -2,7 +2,7 @@
 ## Prepare input data for 3DBC
 ## Input data = bias-adjusted RCM data
 ######################################
-BASEDIR=/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6
+BASEDIR=/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work
 cd ${BASEDIR}
 
 ################################

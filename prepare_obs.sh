@@ -3,7 +3,7 @@
 ## Reference data = seNorge_2018, KliNoGrid_16.12 and HySN2018v2005ERA5
 #######################################################################
 #BASEDIR=/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/
-BASEDIR=/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6
+BASEDIR=/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work
 
 ###############
 ## Prepare dirs
