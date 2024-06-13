@@ -15,7 +15,7 @@ cd ${BASEDIR}
 for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
  do mkdir -p ${BASEDIR}/${var}/CurC/app
  cd ${BASEDIR}/${var}/CurC/app
- for model in mpi-r1i1p1f1-hclim ecearth-r1i1p1f1-racmo ecearthveg-r1i1p1f1-cclm #ecearthveg-r1i1p1f1-hclim cnrm-r1i1p1f2-hclim noresm-r1i1p1f1-hclim #hadgem-r1i1p1-rca ecearth-r12i1p1-rca hadgem-r1i1p1-remo noresm-r1i1p1-rca cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
+ for model in miroc-r1i1p1f1-icon mpi-r1i1p1f1-icon mpi-r1i1p1f1-racmo #mpi-r1i1p1f1-hclim ecearth-r1i1p1f1-racmo ecearthveg-r1i1p1f1-cclm #ecearthveg-r1i1p1f1-hclim cnrm-r1i1p1f2-hclim noresm-r1i1p1f1-hclim #hadgem-r1i1p1-rca ecearth-r12i1p1-rca hadgem-r1i1p1-remo noresm-r1i1p1-rca cnrm-r1i1p1-aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
  do rsync -avu /lustre/storeC-ext/users/kin2100/NVE/EQM/CMIP6/${model}/${var}/hist/* . 
  done
  #Rename files
@@ -29,7 +29,7 @@ done
 for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
  do mkdir -p ${BASEDIR}/${var}/FutC
  cd ${BASEDIR}/${var}/FutC
- for model in mpi-r1i1p1f1-hclim ecearth-r1i1p1f1-racmo ecearthveg-r1i1p1f1-cclm #ecearthveg-r1i1p1f1-hclim cnrm-r1i1p1f2-hclim noresm-r1i1p1f1-hclim #hadgem-r1i1p1-rca ecearth-r12i1p1-rca hadgem-r1i1p1-remo noresm-r1i1p1-rca cnrm-r1i1p1-cclm  aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
+ for model in miroc-r1i1p1f1-icon mpi-r1i1p1f1-icon mpi-r1i1p1f1-racmo #mpi-r1i1p1f1-hclim ecearth-r1i1p1f1-racmo ecearthveg-r1i1p1f1-cclm #ecearthveg-r1i1p1f1-hclim cnrm-r1i1p1f2-hclim noresm-r1i1p1f1-hclim #hadgem-r1i1p1-rca ecearth-r12i1p1-rca hadgem-r1i1p1-remo noresm-r1i1p1-rca cnrm-r1i1p1-cclm  aladin mpi-r1i1p1-cclm  cnrm-r1i1p1-racmo  mpi-r2i1p1-remo ecearth-r12i1p1-cclm  ecearth-r3i1p1-hirham  noresm-r1i1p1-remo
  do rsync -avu /lustre/storeC-ext/users/kin2100/NVE/EQM/CMIP6/${model}/${var}/ssp370/* .  
  done
  #Rename files
@@ -41,7 +41,7 @@ cd ${BASEDIR}
 
 for var in pr tas tasmin tasmax sfcWind hurs ps rlds rsds
  #Adjust global attributes
- #do /home/andreasd/Scripts/KiN2100/3DBC/app/gitHub/3DBC_v2023/ncatted/ncatted_${var}_CMIP5.sh
+ #do /home/andreasd/Scripts/KiN2100/3DBC/app/gitHub/3DBC_v2023/ncatted/CMIP5/ncatted_${var}_CMIP5.sh
  do /home/andreasd/Scripts/KiN2100/3DBC/app/gitHub/3DBC_v2023/ncatted/ncatted_${var}_CMIP6.sh
 done
 
