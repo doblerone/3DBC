@@ -30,11 +30,11 @@ for (p in 1:length(idy))
   print(paste("Started part",p,"on", date()))
   
   #read data
-  nc <- nc_open(paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/tas/Obs/seNorge2018_",RefYear,".nc",sep=""))
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tas/Obs/seNorge2018_",RefYear,".nc",sep=""))
   ObsA <- ncvar_get(nc,"tg",start = c(1,idy[p],1), count=c(-1,szy[p],-1)) + 273.15 #convert to K
   nc_close(nc)
   
-  nc <- nc_open(paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/tas/Cur/cnrm-r1i1p1-racmo_hist_eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",RefYear,".nc4",sep=""))
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tas/Cur/cnrm-r1i1p1f2-racmo_hist_eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",RefYear,".nc4",sep=""))
   CurA <- ncvar_get(nc,"tas",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
@@ -42,7 +42,7 @@ for (p in 1:length(idy))
   ValMask <- which(!is.na(CurA[,,1]) ,arr.ind=T)
   NofPoints <- dim(ValMask)[1]
   
-  nc <- nc_open(paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/tas/Cur/cnrm-r1i1p1-racmo_hist_eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",YEAR,".nc4",sep=""))
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tas/Cur/cnrm-r1i1p1f2-racmo_hist_eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",YEAR,".nc4",sep=""))
   FutA <- ncvar_get(nc,"tas",start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
@@ -105,7 +105,7 @@ for (p in 1:length(idy))
   #That's all :-)
   
   #Write to NetCDF
-  nc <- nc_open(paste("/lustre/storeB/users/andreasd/KiN_2023_data/3DBC/tas/CurC/app/cnrm-r1i1p1-racmo_hist_3dbc-eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",YEAR,".nc4",sep=""),write=TRUE)
+  nc <- nc_open(paste("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tas/CurC/app/cnrm-r1i1p1f2-racmo_hist_3dbc-eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",YEAR,".nc4",sep=""),write=TRUE)
   ncvar_put(nc,"tas",FutCA,start = c(1,idy[p],1), count=c(-1,szy[p],-1))
   nc_close(nc)
   
@@ -119,3 +119,13 @@ print(paste("Year",YEAR,"done."))
 
 rm(list = ls(all.names = TRUE)) #clear environment
 gc()                            #free up memrory and report the memory usage.
+
+print("==========================================")
+print("Recompression")
+ifile <- paste0("/lustre/storeC-ext/users/kin2100/MET/3DBC/application/CMIP6/work/tas/CurC/app/cnrm-r1i1p1f2-racmo_hist_3dbc-eqm-sn2018v2005_rawbc_norway_1km_tas_daily_",YEAR,".nc4")
+ifile_tmp <- paste0(ifile,"_tmp")
+system(paste("mv",ifile,ifile_tmp))
+system(paste("nccopy -d 1 -s", ifile_tmp,ifile))
+system(paste("rm",ifile_tmp))
+print("Done.")
+
